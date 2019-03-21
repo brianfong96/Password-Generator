@@ -6,7 +6,9 @@ import argparse
 
 class pw_generator:
     """
-    A password generator
+    A password generator which asks questions about the specifications of the password
+    As well some personal questions and generates a password based on the answers
+    No passwords are saved, only the questions asked.
     """
     def __init__(self, user = str()):
         """
@@ -26,23 +28,28 @@ class pw_generator:
         self.password_len = int()
         self.password = str()
         self.user = str()
+        self.question_type = {1:'y/n', 2:'Must be an integer', 3:''}
 
-        self.read_file_as_bytes()
+        self.read_file()
         self.ask_question()
         self.generate_seed()
         self.scramble()
         self.substitute()
         print(self.password)
+        self.write_file()
         return
 
-    def read_file_as_bytes(self):
+    def read_file(self):
         """
 
         """
-
+        file_name = str()
+        if usr != str():
+            file_name = usr+'.txt'
+        
         return
     
-    def write_file_from_bytes(self):
+    def write_file(self):
         """
 
         """
