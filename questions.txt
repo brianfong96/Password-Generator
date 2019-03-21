@@ -10,4 +10,4 @@ Are there symbols that are not allowed? Enter all characters not allowed, if all
 *What was the name of your first pet?()
 *What is your mother's maiden name?()
 *What is your middle name?()
-**Do you want to create your own question?(y/n)
+%Do you want to create your own question?(y/n)

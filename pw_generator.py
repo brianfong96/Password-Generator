@@ -22,14 +22,16 @@ class pw_generator:
         self.nums = '1234567890'
         self.symbols = '!@#$%^&*()-=_+[]:;",.<>/?`~'
         self.invalid_symbols = str()
+        self.questions = list()
         self.answer = list()
         self.seed = int()
         self.valid_char = str()
         self.password_len = int()
         self.password = str()
         self.user = str()
-        self.question_type = {1:'y/n', 2:'Must be an integer', 3:''}
-
+        
+        self.question_type_suffix = {1:'y/n', 2:'Must be an integer', 3:''}
+        self.question_type_prefix = {'*': 0, '#':1}
         self.read_file()
         self.ask_question()
         self.generate_seed()
@@ -41,12 +43,19 @@ class pw_generator:
 
     def read_file(self):
         """
-
+        If a user name is given, then read the file for the user
+        If a user name is not given, then read the generic file
         """
         file_name = str()
-        if usr != str():
-            file_name = usr+'.txt'
+        if self.user != str():
+            file_name = self.user +'.txt'
+        else:
+            file_name = 'questions.txt'
         
+        with open(file_name, 'r') as f:
+            self.questions = f.read()
+        f.close()    
+
         return
     
     def write_file(self):
