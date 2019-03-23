@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import pw_generator as pw_gen
 from appJar import gui
+import clipboard
 
 ACCOUNT = "What Account is this password used for?"
 USERNAME = "Username"
@@ -63,7 +64,8 @@ def press(button):
         else:
             pw_len = 16
         pw = pw_gen.pw_generator(usr, pw_len, valid_char, answers)
-        app.infoBox("Your Password", pw.password)
+        app.infoBox("Your Password", "You password is : " + pw.password +"\nIt has been added to your clipboard")
+        clipboard.copy(pw.password)
     return 
     
 

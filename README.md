@@ -6,7 +6,11 @@ No passwords will be saved, and it only requires the user to remember answers to
 ## Requirements
 - Python 3+
 
+Python Modules used:
+
 - appJar
+
+- clipboard
 
 ## Usage
 If the latest version of python3 is installed, run by typing python main.py in console
