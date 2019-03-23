@@ -57,7 +57,6 @@ def press(button):
         for v in valid_char:
             answers.append(v)
         answers.append(exclude)
-        print(answers)
 
         if pw_len.isnumeric():
             pw_len = int(pw_len)
