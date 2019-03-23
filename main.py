@@ -64,8 +64,9 @@ def press(button):
         else:
             pw_len = 16
         pw = pw_gen.pw_generator(usr, pw_len, valid_char, answers)
-        app.infoBox("Your Password", "You password is : " + pw.password +"\nIt has been added to your clipboard")
         clipboard.copy(pw.password)
+        app.infoBox("Your Password", "You password is :\n" + pw.password +"\nIt has been added to your clipboard")
+        
     return 
     
 
