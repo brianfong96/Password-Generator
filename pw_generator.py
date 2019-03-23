@@ -30,7 +30,6 @@ class pw_generator:
         self.generate_password()        
         
         input("Your passowrd is :\n" + self.password)
-        self.write_file()
         return
 
     def read_file(self):
@@ -49,12 +48,6 @@ class pw_generator:
             self.questions = f.read()
         f.close()    
         self.questions = self.questions.split("\n")
-        return
-    
-    def write_file(self):
-        """
-
-        """
         return
 
 
@@ -78,26 +71,40 @@ class pw_generator:
     def valid_answer(self, question):
         """
         Based on the question suffix, validates user input
+        Returns:
+            answer - string that the user enters to respond to string
         """
 
         start_paren = question.find('(')+1
         end_paren = question.find(')')
         question_type = question[start_paren:end_paren]                
         question = question[1:]
-        answer = input(question+": ")
+        answer = input(question+": ").strip()
         while not self.validate(question_type, answer):            
-            answer = input(question+": ")
+            answer = input(question+": ").strip()            
+        
+        temp = answer.split(' ')
+        answer = ''
+        for w in temp:
+            answer += w
         return answer
 
     def ask_question(self):
         """
         Asks questions from self.questions
         """
-        
-        question_type_prefix = ['#', '*', '%']
+        additional_question = '%Do you want to answer more additional questions?(y/n)'
+        question_type_prefix = ['#', '%', '*']
         for q in self.questions:            
-            if question_type_prefix[0] == q[0] :          
-                self.answers.append(self.valid_answer(q))                        
+            if q[0] == question_type_prefix[0]:          
+                self.answers.append(self.valid_answer(q))      
+            elif q[0] == question_type_prefix[1]:
+                if self.valid_answer(q) == 'n' and q == additional_question:
+                    break
+            elif q[0] == question_type_prefix[2]:
+                self.answers.append(self.valid_answer(q))
+                if self.valid_answer(additional_question) == 'n':
+                    break
         return
 
     def generate_valid_chars(self):
@@ -124,9 +131,7 @@ class pw_generator:
             for char in self.answers[5]:
                 pos = self.valid_char.find(char)                
                 if pos != -1:
-                    self.valid_char = self.valid_char[0:pos] + self.valid_char[pos+1:l]
-
-            
+                    self.valid_char = self.valid_char[0:pos] + self.valid_char[pos+1:l]            
         return
 
     def generate_seed(self):
@@ -138,17 +143,16 @@ class pw_generator:
                 self.seed += ord(char)
         return
 
-    def scramble(self):
+    def scramble(self, s):
         """
         Based on seed, scramble characters in answer
         """
         random.seed(self.seed)
-        new_pos = random.sample(range(0,len(self.valid_char)), len(self.valid_char))
+        new_pos = random.sample(range(0,len(s)), len(s))
         temp = str()
         for i in new_pos:
-            temp += self.valid_char[i]
-        self.valid_char = temp
-        return    
+            temp += s[i]
+        return temp
 
     def generate_password(self):
         """
@@ -156,10 +160,11 @@ class pw_generator:
         """
         self.generate_valid_chars()
         self.generate_seed()        
-        self.scramble()        
+        self.scramble(self.valid_char)        
         random.seed(self.seed)
         for i in range(self.password_len):
-            self.password += self.valid_char[random.randint(0,len(self.valid_char))]
+            self.password += self.valid_char[random.randint(0,len(self.valid_char)-1)]
+        self.scramble(self.password)
 
         return
 
