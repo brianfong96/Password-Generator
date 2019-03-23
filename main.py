@@ -50,7 +50,6 @@ def press(button):
                         t += c
                 temp.append(l)
             valid_char = temp
-            print(valid_char)  
 
         answers.append(usr)
         answers.append(account)
