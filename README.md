@@ -4,13 +4,13 @@ Password Generator is a python script that generates passwords based on input fr
 No passwords will be saved, and it only requires the user to remember answers to questions to retrieve a specific password.
 
 ## Requirements
-- Python 3+
+- Python 3+ (https://www.python.org/downloads/)
 
 Python Modules used:
 
-- appJar
+- appJar (http://appjar.info/)
 
-- clipboard
+- clipboard (https://pypi.org/project/clipboard/)
 
 ## Usage
 If the latest version of python3 is installed, run by typing python main.py in console
