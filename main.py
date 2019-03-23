@@ -15,14 +15,14 @@ LOWER = 'qwertyuiopasdfghjklzxcvbnm'
 UPPER = LOWER.upper()
 NUM = '1234567890'
 SYM = "!@#$%^&*()-=_+[]:;',.<>/?`~"
-SUBMIT = "Submit"
+GENERATE = "Generate"
 CANCEL = "Cancel"
 HELP = "Help"
 
 def press(button):
     if button == CANCEL:
         app.stop()
-    elif button == SUBMIT:
+    elif button == GENERATE:
         answers = list()
         usr = app.getEntry(USERNAME).strip()
         account = app.getEntry(ACCOUNT).strip()
@@ -88,5 +88,5 @@ app.setCheckBox(SYMBOLS, ticked=True)
 app.addLabelEntry(EXCLUDE)
 
 
-app.addButtons([SUBMIT, CANCEL, HELP], press)
+app.addButtons([GENERATE, CANCEL, HELP], press)
 app.go()
