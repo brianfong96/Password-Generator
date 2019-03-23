@@ -5,6 +5,10 @@ No passwords will be saved, and it only requires the user to remember answers to
 
 ## Requirements
 Python 3+
+appJar
+
+## Usage
+If the latest version of python3 is installed, run by typing python main.py in console
 
 ## Author
 Brian Fong / @brianfong96
