@@ -51,9 +51,13 @@ class pw_generator:
         Generates password using seed and valid chars
         """
         seed = self.generate_seed()        
-        self.scramble(self.valid_char, seed)        
+        temp = list()        
+        for l in self.valid_char:
+            temp.append(self.scramble(l, seed))
+        self.valid_char = temp
         random.seed(seed)
         for i in range(self.password_len):
-            self.password += self.valid_char[random.randint(0,len(self.valid_char)-1)]
+            section = random.randint(0,len(self.valid_char)-1)
+            self.password += self.valid_char[section][random.randint(0,len(self.valid_char[section])-1)]
         self.scramble(self.password, seed)
         return
