@@ -46,9 +46,9 @@ def press(button):
             for l in valid_char:
                 t = ""
                 for c in l:
-                    if not c in exclude:
+                    if exclude.find(c) == -1:
                         t += c
-                temp.append(l)
+                temp.append(t)
             valid_char = temp
 
         answers.append(usr)
